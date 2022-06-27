@@ -1,8 +1,9 @@
 const fs = require("fs");
+const db = process.env.DATABASE.replace("<PASSWORD>", process.env.PASSWORD);
 const mongodb = require("mongodb");
 const upload = require("./upload_handler");
 const client = new mongodb.MongoClient(db, { useUnifiedTopology: true });
-const db = process.env.DATABASE.replace("<PASSWORD>", process.env.PASSWORD);
+
 exports.upload_file = async (req, res, next) => {
   try {
     await upload(req, res);
